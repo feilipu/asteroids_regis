@@ -7,14 +7,14 @@ enum sizes {SMALL, MEDIUM, LARGE};
 
 struct asteroid {
 
-	int alive;
-	enum sizes size;
-	float hit_radius;
-	float rotation;
-	struct vector2d location;
-	struct vector2d velocity;
-	struct vector2d obj_vert[VERTS];
-	struct vector2d world_vert[VERTS];
+    int alive;
+    enum sizes size;
+    float hit_radius;
+    float rotation;
+    struct vector2d location;
+    struct vector2d velocity;
+    struct vector2d obj_vert[VERTS];
+    struct vector2d world_vert[VERTS];
 };
 
 void init_asteroids(struct asteroid asteroids[], int size);

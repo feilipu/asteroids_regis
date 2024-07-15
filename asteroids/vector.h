@@ -5,14 +5,14 @@
 #define VECTOR_H
 
 struct vector2d {
-	
-	float x;
-	float y;
+
+    float x;
+    float y;
 };
 
 void add_vector(struct vector2d* a, struct vector2d* b);
 
-struct vector2d add_vector_new(struct vector2d* a, struct vector2d* b);
+struct vector2d* add_vector_new(struct vector2d* a, struct vector2d* b);
 
 void multiply_vector(struct vector2d* v, float n);
 
