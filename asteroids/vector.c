@@ -1,81 +1,66 @@
 
 //vector.c
 
-#include <stdio.h>
-#include <math.h>
-
 #include "vector.h"
 
-void add_vector(struct vector2d* a, struct vector2d* b) {
-
+void add_vector(struct vector2d* a, struct vector2d* b)
+{
     a->x += b->x;
     a->y += b->y;
 }
 
-struct vector2d* add_vector_new(struct vector2d* a, struct vector2d* b) {
-
-	struct vector2d new = {a->x + b->x, a->y + b->y};
-
-	return &new;
-}
-
-void multiply_vector(struct vector2d* v, float n) {
-
+void multiply_vector(struct vector2d* v, FLOAT n)
+{
     v->x *= n;
     v->y *= n;
 }
 
-void divide_vector(struct vector2d* v, float n) {
-
+void divide_vector(struct vector2d* v, FLOAT n)
+{
     v->x /= n;
     v->y /= n;
 }
 
-void print_vector(struct vector2d* a) {
-
+void print_vector(struct vector2d* a)
+{
     printf("x = %f\n y = %f\n", a->x, a->y);
 }
 
-float magnitude_vector(struct vector2d* v) {
-
-    float c2 = pow(v->x, 2) + pow(v->y, 2); 
-
-    return sqrt(c2);
+void normalise_vector(struct vector2d* v)
+{
+    multiply_vector(v, INVSQRT(SQR(v->x) + SQR(v->y)) );
 }
 
-void normalise_vector(struct vector2d* v) {
-
-    float mag = magnitude_vector(v);
-
-    divide_vector(v, mag);
-}
-
-void limit_vector(struct vector2d* v, float limit) {
-
-    float mag = magnitude_vector(v);
+void limit_vector(struct vector2d* v, FLOAT limit)
+{
+    FLOAT mag = SQRT(SQR(v->x) + SQR(v->y));
 
     if (mag > limit) {
 
-        float ratio = limit / mag;
+        FLOAT ratio = limit / mag;
         v->x *= ratio;
         v->y *= ratio;
     }
 }
 
-void rotate_vector(struct vector2d* v, float degrees) {
-
+void rotate_vector(struct vector2d* v, FLOAT degrees)
+{
     //calculate radians
-    float angle = degrees * M_PI / 180;
-    float sine = sin(angle);
-    float cosine = cos(angle);
+    FLOAT angle = degrees * M_PI / 180;
+    FLOAT sine = SIN(angle);
+    FLOAT cosine = COS(angle);
 
     //rotation matix
-    float matrix[2][2] = {{cosine, -sine}, {sine, cosine}};
+    FLOAT matrix[2][2];
+    matrix[0][0] = cosine;
+    matrix[0][1] = -sine;
+    matrix[1][0] = sine;
+    matrix[1][1] = cosine;
 
-    float x = v->x;
-    float y = v->y;
+    FLOAT x = v->x;
+    FLOAT y = v->y;
 
     v->x = matrix[0][0] * x + matrix[0][1] * y;
-        v->y = matrix[1][0] * x + matrix[1][1] * y;
+    v->y = matrix[1][0] * x + matrix[1][1] * y;
 }
 

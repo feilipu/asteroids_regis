@@ -1,6 +1,9 @@
 
 //renderer.h
 
+#ifndef RENDERER_H
+#define RENDERER_H
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -13,18 +16,19 @@
 #elif __YAZ180
 #include <lib/yaz180/regis.h>
 #elif __CPM
-#include <lib/cpm/regis.h>
+#include <_DEVELOPMENT/sccz80/lib/cpm/regis.h>
 #endif
 
 //Screen dimension constants
 #define SCREEN_WIDTH 768
 #define SCREEN_HEIGHT 480
 
-//assing a colour to a single pixel
-int draw_pixel(uint32_t* pixel_buffer, int x, int y, uint32_t colour);
+void draw_pixel(window_t * win, uint16_t x, uint16_t y, w_intensity_t colour);
 
-int draw_line(uint32_t* pixel_buffer, int x1, int y1, int x2, int y2, uint32_t colour);
+void draw_line(window_t * win, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, w_intensity_t colour);
 
 //assign a colour to all pixels
-void clear_pixels(uint32_t* pixel_buffer, uint32_t colour);
+void clear_pixels(window_t * win, w_intensity_t colour);
+
+#endif //RENDERER_H
 
