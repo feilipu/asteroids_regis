@@ -6,6 +6,10 @@
 
 #include "vector.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define VERTS 10
 
 enum sizes {SMALL, MEDIUM, LARGE};
@@ -22,18 +26,22 @@ struct asteroid {
     struct vector2d world_vert[VERTS];
 };
 
-void init_asteroids(struct asteroid asteroids[], uint8_t size);
+void init_asteroids(struct asteroid asteroids[], uint8_t size) __z88dk_callee;
 
-void update_asteroids(struct asteroid asteroids[], uint8_t size);
+void update_asteroids(struct asteroid asteroids[], uint8_t size) __z88dk_callee;
 
-void draw_asteroids(window_t * win, struct asteroid asteroids[], uint8_t size);
+void draw_asteroids(window_t * win, struct asteroid asteroids[], uint8_t size) __z88dk_callee;
 
-int shrink_asteroid(struct asteroid* a, uint8_t size);
+int shrink_asteroid(struct asteroid* a, uint8_t size) __z88dk_callee;
 
-void spawn_asteroids(struct asteroid a[], uint8_t length, uint8_t size, struct vector2d v);
+void spawn_asteroids(struct asteroid a[], uint8_t length, uint8_t size, struct vector2d v) __z88dk_callee;
 
-void bounds_asteroids(struct asteroid asteroids[], uint8_t size);
+void bounds_asteroids(struct asteroid asteroids[], uint8_t size) __z88dk_callee;
 
-int collision_asteroids(struct asteroid asteroids[], uint8_t size, struct vector2d* v, FLOAT radius);
+int collision_asteroids(struct asteroid asteroids[], uint8_t size, struct vector2d* v, FLOAT radius) __z88dk_callee;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //ASTEROIDS_H

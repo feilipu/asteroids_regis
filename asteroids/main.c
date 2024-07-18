@@ -5,13 +5,12 @@
 */
 
 //Using ReGIS and standard IO
-
 #include "vector.h"
 #include "renderer.h"
 #include "player.h"
 #include "asteroids.h"
 
-#pragma printf = "%s %c %u %0d"     // enables %s, %c, %u, %d (formatted) only
+#pragma printf = "%s %c %u %0d %0f"     // enables %s, %c, %u, %d (formatted) only
 
 #define ASTEROIDS 27
 #define LIVES 3
@@ -60,8 +59,6 @@ int main(void)
         update_player(&lives[i]);
         offset += 20;
     }
-
-    printf("Player & Asteroids.\n");
 
     //set up player and asteroids in world space
     init_player(&p);

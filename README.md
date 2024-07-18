@@ -8,23 +8,31 @@ To compile you need to have z88dk and z88dk-libraries regis installed on your sy
 
 ```sh
     # ZSDCC compile
-    zcc +rc2014 -subtype=cpm -v -m --list  --math32 -llib/rc2014/regis --max-allocs-per-node100000 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    zcc +rc2014 -subtype=cpm -v -m --list  --math32 --max-allocs-per-node100000 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 compile
-    zcc +rc2014 -subtype=cpm -clib=new -v -m --list -O2 --math32 -llib/rc2014/regis main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    zcc +rc2014 -subtype=cpm -clib=new -v -m --list -O2 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 CP/M compile
-    zcc +cpm -clib=new -v -m --list -O2 -DAMALLOC --math32 -l../../libsrc/_DEVELOPMENT/lib/sccz80/lib/cpm/regis main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    zcc +cpm -v -m --list -O2 -DAMALLOC --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 CP/M 8085_AM9511 compile
-    zcc +cpm -clib=8085 -v -m --list -O2 -DAMALLOC --am9511 -l../../libsrc/_DEVELOPMENT/lib/sccz80/lib/cpm/regis_8085 main.c vector.c player.c asteroids.c renderer.c  -o asteroid -create-app
+    zcc +cpm -clib=8085 -v -m --list -O2 -DAMALLOC --am9511 main.c vector.c player.c asteroids.c renderer.c  -o asteroid -create-app
+```
+
+## Screen
+
+Using XTerm compiled with ReGIS support.
+
+```sh
+xterm +u8 -geometry 132x50 -ti 340 -tn 340 -title "Asteroids" -e picocom -b 115200 -p 2 -f h /dev/ttyUSB0 --send-cmd "sx -vv"
 ```
 
 ## Controls
-* left arrow to rotate left
-* right arrow to rotate right
-* up arrow to apply thrust in the direction you are pointing
-* space to shoot a bullet
+* "A" or "a" to rotate left
+* "D" or "d" to rotate right
+* "W" or "w" to apply thrust in the direction you are pointing
+* "S" or "s" to shoot a bullet
 * ESC to exit game
 
 ## Images

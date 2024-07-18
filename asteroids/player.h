@@ -6,6 +6,10 @@
 
 #include "vector.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define P_VERTS 3
 #define BULLETS 3
 
@@ -29,21 +33,25 @@ struct player {
     struct bullet bullets[BULLETS];
 };
 
-void init_player(struct player* p);
+void init_player(struct player* p) __z88dk_fastcall;
 
-void draw_player(window_t * win, struct player* p);
+void draw_player(window_t * win, struct player* p) __z88dk_callee;
 
-void shoot_bullet(struct player* p);
+void shoot_bullet(struct player* p) __z88dk_fastcall;
 
-void update_player(struct player* p);
+void update_player(struct player* p) __z88dk_fastcall;
 
-void bounds_player(struct player* p);
+void bounds_player(struct player* p) __z88dk_fastcall;
 
-void apply_force(struct vector2d* velocity, struct vector2d* thrust);
+void apply_force(struct vector2d* velocity, struct vector2d* thrust) __z88dk_callee;
 
-void rotate_player(struct player* p, FLOAT degrees);
+void rotate_player(struct player* p, FLOAT degrees) __z88dk_callee;
 
-void get_direction(struct vector2d* direction, struct player* p);
+void get_direction(struct vector2d* direction, struct player* p) __z88dk_callee;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //PLAYER_H
 

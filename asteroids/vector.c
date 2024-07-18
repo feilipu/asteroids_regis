@@ -23,7 +23,7 @@ void divide_vector(struct vector2d* v, FLOAT n)
 
 void print_vector(struct vector2d* a)
 {
-    printf("x = %f\n y = %f\n", a->x, a->y);
+    printf("\nx = %f\ny = %f\n", a->x, a->y);
 }
 
 void normalise_vector(struct vector2d* v)

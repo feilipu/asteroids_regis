@@ -7,7 +7,12 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+
 #include <math.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef __MATH_MATH16
 #define FLOAT _Float16
@@ -40,18 +45,22 @@ struct vector2d {
     FLOAT y;
 };
 
-void add_vector(struct vector2d* a, struct vector2d* b);
+void add_vector(struct vector2d* a, struct vector2d* b) __z88dk_callee;
 
-void multiply_vector(struct vector2d* v, FLOAT n);
+void multiply_vector(struct vector2d* v, FLOAT n) __z88dk_callee;
 
-void divide_vector(struct vector2d* v, FLOAT n);
+void divide_vector(struct vector2d* v, FLOAT n) __z88dk_callee;
 
-void print_vector(struct vector2d* a);
+void print_vector(struct vector2d* a) __z88dk_fastcall;
 
-void normalise_vector(struct vector2d* v);
+void normalise_vector(struct vector2d* v) __z88dk_fastcall;
 
-void limit_vector(struct vector2d* v, FLOAT limit);
+void limit_vector(struct vector2d* v, FLOAT limit) __z88dk_callee;
 
-void rotate_vector(struct vector2d* v, FLOAT degrees);
+void rotate_vector(struct vector2d* v, FLOAT degrees) __z88dk_callee;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //VECTOR_H
