@@ -3,7 +3,7 @@
 
 #include "renderer.h"
 
-/* Open a graphics window, in graphics mode, and inititialise graphics */
+/* Open a graphics window in graphics mode */
 uint8_t window_new(window_t * win, uint16_t width, uint16_t height, FILE * fp)
 {
     if(win != NULL)
@@ -11,7 +11,6 @@ uint8_t window_new(window_t * win, uint16_t width, uint16_t height, FILE * fp)
         if (fp != NULL) win->fp = fp; else return 0;
         if (width && width < WIDTH_MAX) win->width = width; else win->width = WIDTH_MAX-1;
         if (height && height < HEIGHT_MAX) win->height = height; else win->height = HEIGHT_MAX-1;
-        fprintf(win->fp, "%cP1p", ASCII_ESC);
         return 1;
     }
     else
@@ -19,6 +18,7 @@ uint8_t window_new(window_t * win, uint16_t width, uint16_t height, FILE * fp)
         return 0;
     }
 }
+
 
 /* Set writing mode */
 void draw_mode(window_t * win, w_mode_t mode)
@@ -30,6 +30,12 @@ void draw_mode(window_t * win, w_mode_t mode)
         case _OVL: fputs("W(V)", win->fp); break;
         case _CPL: fputs("W(C)", win->fp); break;
     }
+}
+
+/* Inititialise graphics window */
+void window_open(window_t * win)
+{
+    fprintf(win->fp, "%cP2p", ASCII_ESC);
 }
 
 /* Clear window */

@@ -1,14 +1,17 @@
 
 # ASTEROIDS
 
-This is a recreation of the classic asteroids video game. Implemented in the C
-programming language, using z88dk-libraries ReGIS library to display graphics on the screen.
+This is a recreation of the classic asteroids video game.
 
-To compile you need to have z88dk and z88dk-libraries regis installed on your system and the header files available to you. Display is via XTerm compiled with ReGIS enabled.
+Implemented in the C programming language, using ReGIS to display graphics on the screen.
+
+To compile you need to have z88dk installed on your system and the header files available to you.
+
+Display is via [XTerm compiled with ReGIS enabled](https://github.com/feilipu/ReGIS?tab=readme-ov-file#preparing-xterm-to-support-regis).
 
 ```sh
     # ZSDCC compile
-    zcc +rc2014 -subtype=cpm -v -m --list  --math32 --max-allocs-per-node100000 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    zcc +rc2014 -subtype=cpm -v -m --list --math32 --max-allocs-per-node100000 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 compile
     zcc +rc2014 -subtype=cpm -clib=new -v -m --list -O2 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
@@ -22,7 +25,7 @@ To compile you need to have z88dk and z88dk-libraries regis installed on your sy
 
 ## Screen
 
-Using XTerm compiled with ReGIS support.
+Using XTerm compiled with ReGIS support, and picocom to provide a serial interface.
 
 ```sh
 xterm +u8 -geometry 132x50 -ti 340 -tn 340 -title "Asteroids" -e picocom -b 115200 -p 2 -f h /dev/ttyUSB0 --send-cmd "sx -vv"

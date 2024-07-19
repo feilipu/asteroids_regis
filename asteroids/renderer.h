@@ -108,11 +108,14 @@ typedef struct window_s {
 /***        Function Definitions                                          ***/
 /****************************************************************************/
 
-/* Open a graphics window, in graphics mode, and inititialise graphics */
+/* Open a graphics window in graphics mode */
 uint8_t window_new(window_t * win,uint16_t width,uint16_t height,FILE * fp) __z88dk_callee;
 
 /* Set writing mode */
 void draw_mode(window_t * win,w_mode_t mode) __z88dk_callee;
+
+/* Inititialise graphics window*/
+void window_open(window_t * win) __z88dk_callee;
 
 /* Clear window */
 void window_clear(window_t * win) __z88dk_fastcall;

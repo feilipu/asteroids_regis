@@ -33,8 +33,6 @@ int main(void)
         printf("ReGIS could not initialize!\n");
         return 0;
     }
-    // set window to Overlay Mode
-    draw_mode(&window, _OVL);
 
     uint8_t offset = 0;
 
@@ -73,52 +71,55 @@ int main(void)
     //render loop
     for(;;) {
 
-        int keycode = getk();
+        switch (getk())
+        {
+            case ASCII_ESC:
+                //Quit ReGIS Graphics
+                window_close(&window);
+                return 0;
 
-        if (keycode == ASCII_ESC) {
-            //Quit ReGIS Graphics
-            window_close(&window);
-            return 0;
-        }
+            case ASCII_SPACE:
+                do {
+                    if (p.lives > 0) {
+                        shoot_bullet(&p);
+                    } else break;
 
-        if (keycode == 's' || keycode == 'S') {
+                } while (getk() == ASCII_SPACE);
+                break;
 
-            struct vector2d thrust;
-            thrust.x = p.obj_vert[0].x;
-            thrust.y = p.obj_vert[0].y;
-            normalise_vector(&thrust);
-            multiply_vector(&thrust, .06);
-            apply_force(&p.velocity, &thrust);
-        }
+            case 'S':
+            case 's':
+                struct vector2d thrust;
+                thrust.x = p.obj_vert[0].x;
+                thrust.y = p.obj_vert[0].y;
+                normalise_vector(&thrust);
+                multiply_vector(&thrust, 0.06);
+                apply_force(&p.velocity, &thrust);
+                break;
 
-        if (keycode == 'a' || keycode == 'A') {
+            case'A':
+            case'a':
+                rotate_player(&p, -4);
+                break;
 
-            rotate_player(&p, -4);
-        }
-
-        if (keycode == 'd' || keycode == 'D') {
-
-            rotate_player(&p, 4);
-        }
-
-        if (keycode == ASCII_SPACE) {
-
-             do {
-
-                if (p.lives > 0) {
-                    shoot_bullet(&p);
-                } else break;
-
-            } while (keycode = getk() == ASCII_SPACE);
+            case 'D':
+            case 'd':
+                rotate_player(&p, 4);
+                break;
         }
 
         //draw to the screen window
+        window_open(&window);
         clear_pixels(&window, _D);
+
         draw_player(&window, &p);
         draw_player(&window, &lives[0]);
         draw_player(&window, &lives[1]);
         draw_player(&window, &lives[2]);
+
         draw_asteroids(&window, asteroids, ASTEROIDS);
+
+        window_close(&window);
 
         update_player(&p);
         bounds_player(&p);
@@ -172,7 +173,7 @@ int main(void)
 
         update_asteroids(asteroids, ASTEROIDS);
 
-
+#if 0
         next_game_tick += 1000 / 60;
 //      sleep = next_game_tick - millis();
 
@@ -180,11 +181,10 @@ int main(void)
 
 //          delay(sleep);
         }
-    }
 
-    //Quit ReGIS Graphics
-    window_close(&window);
- 
+#endif
+
+    }
     return 0;
 }
 

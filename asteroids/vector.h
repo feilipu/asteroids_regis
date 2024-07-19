@@ -32,7 +32,7 @@ extern "C" {
 
 #else
 #define FLOAT float
-#define SQR(x) sqr(x)
+#define SQR(x) ((x)*(x))
 #define SQRT(x) sqrt(x)
 #define INVSQRT(x) (1.0/sqrt(x))
 #define COS(x) cos(x)

@@ -18,10 +18,10 @@ void init_asteroids(struct asteroid asteroids[], uint8_t size)
         int ly = rand() % SCREEN_HEIGHT / 2;
 
         //give asteroid random velocity
-        FLOAT vx = (FLOAT) (rand() % 500) / 1000;
-        FLOAT vy = (FLOAT) (rand() % 500) / 1000;
+        FLOAT vx = (FLOAT) ((rand() % 500) / 1000);
+        FLOAT vy = (FLOAT) ((rand() % 500) / 1000);
 
-        FLOAT degrees =  (FLOAT) (rand() %  100 + 1000) / 1000;
+        FLOAT degrees =  (FLOAT) ((rand() %  100 + 1000) / 1000);
 
         //50% chance the sign of the variable will be switched to negative
         if (sign_x >= 50) {
@@ -65,7 +65,7 @@ void init_asteroids(struct asteroid asteroids[], uint8_t size)
         asteroids[i].obj_vert[3].y = .0;
         asteroids[i].obj_vert[4].x = .3;
         asteroids[i].obj_vert[4].y = -.2;
-		asteroids[i].obj_vert[5].x = .1;
+        asteroids[i].obj_vert[5].x = .1;
         asteroids[i].obj_vert[5].y = -.2;
         asteroids[i].obj_vert[6].x = .0;
         asteroids[i].obj_vert[6].y = -.3;
