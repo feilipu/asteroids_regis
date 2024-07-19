@@ -16,8 +16,11 @@ Display is via [XTerm compiled with ReGIS enabled](https://github.com/feilipu/Re
     # SCCZ80 compile
     zcc +rc2014 -subtype=cpm -clib=new -v -m --list -O2 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
-    # SCCZ80 CP/M compile
+    # SCCZ80 CP/M math32 compile
     zcc +cpm -v -m --list -O2 -DAMALLOC --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+
+    # SCCZ80 CP/M math16 compile
+    zcc +cpm -v -m --list -O2 -DAMALLOC --math16 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 CP/M 8085_AM9511 compile
     zcc +cpm -clib=8085 -v -m --list -O2 -DAMALLOC --am9511 main.c vector.c player.c asteroids.c renderer.c  -o asteroid -create-app
