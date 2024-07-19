@@ -9,6 +9,8 @@ To compile you need to have z88dk installed on your system and the header files 
 
 Display is via [XTerm compiled with ReGIS enabled](https://github.com/feilipu/ReGIS?tab=readme-ov-file#preparing-xterm-to-support-regis).
 
+For convenience CP/M is chosen as the target platform, but other targets are possible.
+
 ```sh
     # ZSDCC compile
     zcc +rc2014 -subtype=cpm -v -m --list --math32 --max-allocs-per-node100000 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
@@ -22,7 +24,10 @@ Display is via [XTerm compiled with ReGIS enabled](https://github.com/feilipu/Re
     # SCCZ80 CP/M math16 compile
     zcc +cpm -v -m --list -O2 -DAMALLOC --math16 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
-    # SCCZ80 CP/M 8085_AM9511 compile
+    # SCCZ80 CP/M z180 math16 compile
+    zcc +cpm -clib=z180 -v -m --list -O2 -DAMALLOC --math16 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+
+    # SCCZ80 CP/M 8085 am9511 compile
     zcc +cpm -clib=8085 -v -m --list -O2 -DAMALLOC --am9511 main.c vector.c player.c asteroids.c renderer.c  -o asteroid -create-app
 ```
 
