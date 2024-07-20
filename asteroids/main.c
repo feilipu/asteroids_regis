@@ -28,7 +28,7 @@ int main(void)
     printf("Initialising... ");
 
     //Initialize ReGIS
-    if (window_new(&window, SCREEN_WIDTH, SCREEN_HEIGHT, stdout) == 0)
+    if (window_create(&window, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, stdout) == 0)
     {
         printf("ReGIS could not initialize!\n");
         return 0;
@@ -106,11 +106,14 @@ int main(void)
             case 'd':
                 rotate_player(&p, 4);
                 break;
+
+            default:
+                break;
         }
 
         //draw to the screen window
         window_open(&window);
-        clear_pixels(&window, _D);
+        window_clear(&window);
 
         draw_player(&window, &p);
         draw_player(&window, &lives[0]);

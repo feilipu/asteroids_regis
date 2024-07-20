@@ -66,36 +66,26 @@ void shoot_bullet(struct player* p)
 
 void draw_player(window_t * win, struct player* p)
 {
+    draw_intensity(win, _G);    // Player in Green
+
     if (p->lives > 0) {
-    
-        draw_line(win, p->world_vert[0].x, p->world_vert[0].y, p->world_vert[1].x, p->world_vert[1].y, _G);
-        draw_line(win, p->world_vert[1].x, p->world_vert[1].y, p->world_vert[2].x, p->world_vert[2].y, _G);
-        draw_line(win, p->world_vert[2].x, p->world_vert[2].y, p->world_vert[0].x, p->world_vert[0].y, _G);
+
+        draw_position(win, p->world_vert[0].x, p->world_vert[0].y);
+        draw_line(win, p->world_vert[1].x, p->world_vert[1].y);
+        draw_line(win, p->world_vert[2].x, p->world_vert[2].y);
+        draw_line(win, p->world_vert[0].x, p->world_vert[0].y);
     }
 
-    //draw vers representing the player
-    for (uint8_t i = 0; i < P_VERTS; i++) {
-
-        draw_pixel(win, p->world_vert[i].x, p->world_vert[i].y, _C);
-    }
+    draw_intensity(win, _R);    // Bullets in Red
 
     //draw verts representing the bullets
     for (uint8_t i = 0; i < BULLETS; ++i) {
 
         if (p->bullets[i].alive == TRUE) {
         
-            draw_pixel(win, p->bullets[i].location.x, p->bullets[i].location.y, _R);
+            draw_pixel(win, p->bullets[i].location.x, p->bullets[i].location.y);
         }
     }
-
-    /*
-    //draw vert representing ships location
-    struct vector2d cpy = {p->location.x, p->location.y};
-    struct vector2d translation = {SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
-    add_vector(&cpy, &translation);
-
-    draw_pixel(win, cpy.x, cpy.y, 0x00ff00ff);
-    */
 }
 
 void update_player(struct player* p)

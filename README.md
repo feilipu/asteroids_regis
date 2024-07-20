@@ -24,6 +24,9 @@ For convenience CP/M is chosen as the target platform, but other targets are pos
     # SCCZ80 CP/M math16 compile
     zcc +cpm -v -m --list -O2 -DAMALLOC --math16 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
+    # SCCZ80 CP/M am9511 compile
+    zcc +cpm -v -m --list -O2 -DAMALLOC --am9511 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    
     # SCCZ80 CP/M z180 math16 compile
     zcc +cpm -clib=z180 -v -m --list -O2 -DAMALLOC --math16 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 

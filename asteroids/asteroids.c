@@ -111,30 +111,24 @@ void update_asteroids(struct asteroid asteroids[], uint8_t size)
 void draw_asteroids(window_t * win, struct asteroid asteroids[], uint8_t size)
 {
 
+    draw_intensity(win, _W);    // Asteroids in White
+
     for (uint8_t i = 0; i < size; ++i) {
 
         if (asteroids[i].alive) {
 
-            draw_line(win, asteroids[i].world_vert[0].x, asteroids[i].world_vert[0].y, asteroids[i].world_vert[1].x, asteroids[i].world_vert[1].y, _W);
-            draw_line(win, asteroids[i].world_vert[1].x, asteroids[i].world_vert[1].y, asteroids[i].world_vert[2].x, asteroids[i].world_vert[2].y, _W);
-            draw_line(win, asteroids[i].world_vert[2].x, asteroids[i].world_vert[2].y, asteroids[i].world_vert[3].x, asteroids[i].world_vert[3].y, _W);
-            draw_line(win, asteroids[i].world_vert[3].x, asteroids[i].world_vert[3].y, asteroids[i].world_vert[4].x, asteroids[i].world_vert[4].y, _W);
-            draw_line(win, asteroids[i].world_vert[4].x, asteroids[i].world_vert[4].y, asteroids[i].world_vert[5].x, asteroids[i].world_vert[5].y, _W);
-            draw_line(win, asteroids[i].world_vert[5].x, asteroids[i].world_vert[5].y, asteroids[i].world_vert[6].x, asteroids[i].world_vert[6].y, _W);
-            draw_line(win, asteroids[i].world_vert[6].x, asteroids[i].world_vert[6].y, asteroids[i].world_vert[7].x, asteroids[i].world_vert[7].y, _W);
-            draw_line(win, asteroids[i].world_vert[7].x, asteroids[i].world_vert[7].y, asteroids[i].world_vert[8].x, asteroids[i].world_vert[8].y, _W);
-            draw_line(win, asteroids[i].world_vert[8].x, asteroids[i].world_vert[8].y, asteroids[i].world_vert[9].x, asteroids[i].world_vert[9].y, _W);
-            draw_line(win, asteroids[i].world_vert[9].x, asteroids[i].world_vert[9].y, asteroids[i].world_vert[0].x, asteroids[i].world_vert[0].y, _W);
+            draw_position(win, asteroids[i].world_vert[0].x, asteroids[i].world_vert[0].y);
+            draw_line(win, asteroids[i].world_vert[1].x, asteroids[i].world_vert[1].y);
+            draw_line(win, asteroids[i].world_vert[2].x, asteroids[i].world_vert[2].y);
+            draw_line(win, asteroids[i].world_vert[3].x, asteroids[i].world_vert[3].y);
+            draw_line(win, asteroids[i].world_vert[4].x, asteroids[i].world_vert[4].y);
+            draw_line(win, asteroids[i].world_vert[5].x, asteroids[i].world_vert[5].y);
+            draw_line(win, asteroids[i].world_vert[6].x, asteroids[i].world_vert[6].y);
+            draw_line(win, asteroids[i].world_vert[7].x, asteroids[i].world_vert[7].y);
+            draw_line(win, asteroids[i].world_vert[8].x, asteroids[i].world_vert[8].y);
+            draw_line(win, asteroids[i].world_vert[9].x, asteroids[i].world_vert[9].y);
+            draw_line(win, asteroids[i].world_vert[0].x, asteroids[i].world_vert[0].y);
         }
-
-        /*
-        //draw vert representing ships location
-        struct vector2d cpy = {asteroids[i].location.x, asteroids[i].location.y};
-        struct vector2d translation = {SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
-        add_vector(&cpy, &translation);
-
-        draw_pixel(win, cpy.x, cpy.y, 0x00ff00ff);
-        */
     }
 }
 
@@ -262,12 +256,12 @@ int collision_asteroids(struct asteroid asteroids[], uint8_t size, struct vector
         if (asteroids[i].alive == 1) {
 
             FLOAT sum = asteroids[i].hit_radius + radius;
-            FLOAT a = pow(asteroids[i].location.x - v->x, 2);
-            FLOAT b = pow(asteroids[i].location.y - v->y, 2);
-            FLOAT distance = sqrt(a + b);
+            FLOAT a = SQR(asteroids[i].location.x - v->x);
+            FLOAT b = SQR(asteroids[i].location.y - v->y);
+            FLOAT distance = SQRT(a + b);
 
             if (distance < sum) {
-    
+
                 return i;
             }
         }

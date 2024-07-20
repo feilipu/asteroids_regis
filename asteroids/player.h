@@ -11,7 +11,7 @@ extern "C" {
 #endif
 
 #define P_VERTS 3
-#define BULLETS 3
+#define BULLETS 5
 
 enum boolean {TRUE, FALSE};
 

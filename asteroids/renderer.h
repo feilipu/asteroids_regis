@@ -109,10 +109,13 @@ typedef struct window_s {
 /****************************************************************************/
 
 /* Open a graphics window in graphics mode */
-uint8_t window_new(window_t * win,uint16_t width,uint16_t height,FILE * fp) __z88dk_callee;
+uint8_t window_create(window_t * win, uint16_t width, uint16_t height, FILE * fp) __z88dk_callee;
 
 /* Set writing mode */
-void draw_mode(window_t * win,w_mode_t mode) __z88dk_callee;
+void draw_mode(window_t * win, w_mode_t mode) __z88dk_callee;
+
+/* Set writing colour */
+void draw_intensity(window_t * win, w_intensity_t colour) __z88dk_callee;
 
 /* Inititialise graphics window*/
 void window_open(window_t * win) __z88dk_callee;
@@ -123,12 +126,13 @@ void window_clear(window_t * win) __z88dk_fastcall;
 /* Close a graphics window, return to text mode */
 void window_close(window_t * win) __z88dk_fastcall;
 
-void draw_pixel(window_t * win, uint16_t x, uint16_t y, w_intensity_t colour) __z88dk_callee;
+void draw_pixel(window_t * win, uint16_t x, uint16_t y) __z88dk_callee;
 
-void draw_line(window_t * win, uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, w_intensity_t colour) __z88dk_callee;
+/* Position the drawing location */
+void draw_position(window_t * win, uint16_t x, uint16_t y) __z88dk_callee;
 
-//assign a colour to all pixels
-void clear_pixels(window_t * win, w_intensity_t colour) __z88dk_callee;
+/* Draw line from previous position to given position */
+void draw_line(window_t * win, uint16_t x, uint16_t y) __z88dk_callee;
 
 #ifdef __cplusplus
 }

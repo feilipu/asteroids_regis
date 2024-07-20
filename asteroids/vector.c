@@ -46,7 +46,7 @@ void limit_vector(struct vector2d* v, FLOAT limit)
 void rotate_vector(struct vector2d* v, FLOAT degrees)
 {
     //calculate radians
-    FLOAT angle = degrees * M_PI / 180;
+    FLOAT angle = degrees * (M_PI / 180);
     FLOAT sine = SIN(angle);
     FLOAT cosine = COS(angle);
 
