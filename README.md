@@ -19,19 +19,19 @@ For convenience CP/M is chosen as the target platform, but other targets are pos
     zcc +rc2014 -subtype=cpm -clib=new -v -m --list -O2 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 CP/M math32 compile
-    zcc +cpm -v -m --list -O2 -DAMALLOC --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    zcc +cpm -v -m --list -O2 -DAMALLOC --math32 -lfastmath main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 CP/M math16 compile
-    zcc +cpm -v -m --list -O2 -DAMALLOC --math16 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    zcc +cpm -v -m --list -O2 -DAMALLOC --math16 --math32 -lfastmath main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 CP/M am9511 compile
-    zcc +cpm -v -m --list -O2 -DAMALLOC --am9511 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    zcc +cpm -v -m --list -O2 -DAMALLOC --am9511 -lfastmath main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
     
     # SCCZ80 CP/M z180 math16 compile
-    zcc +cpm -clib=z180 -v -m --list -O2 -DAMALLOC --math16 --math32 main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
+    zcc +cpm -clib=z180 -v -m --list -O2 -DAMALLOC --math16 --math32 -lfastmath main.c vector.c player.c asteroids.c renderer.c -o asteroid -create-app
 
     # SCCZ80 CP/M 8085 am9511 compile
-    zcc +cpm -clib=8085 -v -m --list -O2 -DAMALLOC --am9511 main.c vector.c player.c asteroids.c renderer.c  -o asteroid -create-app
+    zcc +cpm -clib=8085 -v -m --list -O2 -DAMALLOC --am9511 -lfastmath main.c vector.c player.c asteroids.c renderer.c  -o asteroid -create-app
 ```
 
 ## Screen
