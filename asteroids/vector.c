@@ -28,7 +28,9 @@ void print_vector(struct vector2d* a)
 
 void normalise_vector(struct vector2d* v)
 {
-    multiply_vector(v, INVSQRT(SQR(v->x) + SQR(v->y)) );
+    FLOAT n = INVSQRT(SQR(v->x) + SQR(v->y));
+    v->x *= n;
+    v->y *= n;
 }
 
 void limit_vector(struct vector2d* v, FLOAT limit)
