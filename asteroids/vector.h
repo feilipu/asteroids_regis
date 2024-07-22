@@ -19,6 +19,7 @@ extern "C" {
 #define SQR(x) sqrf16(x)
 #define SQRT(x) sqrtf16(x)
 #define INVSQRT(x) invsqrtf16(x)
+#define HYPOT(x,y) hypotf16(x,y)
 #define COS(x) cosf16(x)
 #define SIN(x) sinf16(x)
 
@@ -27,6 +28,16 @@ extern "C" {
 #define SQR(x) sqr(x)
 #define SQRT(x) sqrt(x)
 #define INVSQRT(x) invsqrt(x)
+#define HYPOT(x,y) hypot(x,y)
+#define COS(x) cos(x)
+#define SIN(x) sin(x)
+
+#elif __MATH_AM9511
+#define FLOAT float
+#define SQR(x) sqr(x)
+#define SQRT(x) sqrt(x)
+#define INVSQRT(x) (1.0/sqrt(x))
+#define HYPOT(x,y) hypot(x,y)
 #define COS(x) cos(x)
 #define SIN(x) sin(x)
 
@@ -35,6 +46,7 @@ extern "C" {
 #define SQR(x) ((x)*(x))
 #define SQRT(x) sqrt(x)
 #define INVSQRT(x) (1.0/sqrt(x))
+#define HYPOT(x,y) sqrt((x)*(x)+(y)*(y))
 #define COS(x) cos(x)
 #define SIN(x) sin(x)
 #endif

@@ -35,7 +35,7 @@ void normalise_vector(struct vector2d* v)
 
 void limit_vector(struct vector2d* v, FLOAT limit)
 {
-    FLOAT mag = SQRT(SQR(v->x) + SQR(v->y));
+    FLOAT mag = HYPOT(v->x, v->y);
 
     if (mag > limit) {
 

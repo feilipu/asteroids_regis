@@ -71,7 +71,7 @@ int main(void)
     //render loop
     for(;;) {
 
-        switch (getk())
+        switch (getc(stdin))
         {
             case ASCII_ESC:
                 //Quit ReGIS Graphics
@@ -84,7 +84,7 @@ int main(void)
                         shoot_bullet(&p);
                     } else break;
 
-                } while (getk() == ASCII_SPACE);
+                } while (getc(stdin) == ASCII_SPACE);
                 break;
 
             case 'S':
@@ -107,6 +107,7 @@ int main(void)
                 rotate_player(&p, 4);
                 break;
 
+            case EOF:
             default:
                 break;
         }
