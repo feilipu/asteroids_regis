@@ -14,7 +14,7 @@
 extern "C" {
 #endif
 
-#ifdef __MATH_MATH16
+#if __MATH_MATH16
 #define FLOAT _Float16
 #define SQR(x) sqrf16(x)
 #define SQRT(x) sqrtf16(x)

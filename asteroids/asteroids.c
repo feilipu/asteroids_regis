@@ -253,17 +253,9 @@ int collision_asteroids(struct asteroid asteroids[], uint8_t size, struct vector
     for (uint8_t i = 0; i < size; i++) {
 
         //only check for collions for asteroids that are shown onscreen
-        if (asteroids[i].alive == 1) {
+        if ((asteroids[i].alive == 1) && (HYPOT(asteroids[i].location.x - v->x, asteroids[i].location.y - v->y) < asteroids[i].hit_radius + radius)) {
 
-            FLOAT sum = asteroids[i].hit_radius + radius;
-            FLOAT a = SQR(asteroids[i].location.x - v->x);
-            FLOAT b = SQR(asteroids[i].location.y - v->y);
-            FLOAT distance = SQRT(a + b);
-
-            if (distance < sum) {
-
-                return i;
-            }
+            return i;
         }
     }
 
